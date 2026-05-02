@@ -1,0 +1,7 @@
+
+POST  https://localhost:7273/api/v1/Slug 
+Content-Type: application/json
+
+{
+  "text": "Hello World"
+}
