@@ -1,6 +1,6 @@
 ﻿namespace SlugApi.DTOs
 { 
-    public class SlugGenerateResponse
+    public class GenerateSlugResponse
     {
       public string OriginalText { get; set; } = string.Empty;
       public string Slug { get; set; } = string.Empty;
