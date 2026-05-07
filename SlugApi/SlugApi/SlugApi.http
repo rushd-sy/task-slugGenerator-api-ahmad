@@ -1,7 +1,8 @@
 
-POST https://localhost:7273/api/v1/Slug 
+POST https://localhost:7273/api/v1/Slug
 Content-Type: application/json
 
 {
-  "text": "Hello World"
+  "text": "Hello World",
+  "separator": "/"
 }

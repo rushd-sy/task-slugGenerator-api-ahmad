@@ -10,7 +10,7 @@ namespace SlugApi.Controllers
         [HttpPost]
         public IActionResult GenerateSlug([FromBody] GenerateSlugRequest request)
         {
-            var slug = SlugGenerator.SlugGenerator.Generate(request.Text, request.Separator = '-');
+            var slug = SlugGenerator.SlugGenerator.Generate(request.Text, request.Separator);
             var response = new GenerateSlugResponse
             {
                 OriginalText = request.Text,
