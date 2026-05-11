@@ -4,7 +4,6 @@
     {
       public string OriginalText { get; set; } = string.Empty;
       public string Slug { get; set; } = string.Empty;
-      public DateTime GeneratedAt { get; set; } 
-
+        public DateTimeOffset GeneratedAt { get; } = DateTimeOffset.UtcNow;
     }
 }
