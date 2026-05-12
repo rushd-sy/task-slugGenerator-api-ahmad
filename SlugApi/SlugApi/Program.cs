@@ -1,4 +1,6 @@
 
+using Asp.Versioning;
+
 namespace SlugApi
 {
     public class Program
@@ -11,7 +13,11 @@ namespace SlugApi
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
             builder.Services.AddOpenApi();
-
+            builder.Services.AddApiVersioning(options =>
+            {
+                options.DefaultApiVersion = new ApiVersion(1, 0);
+                options.AssumeDefaultVersionWhenUnspecified = true;
+            });
             var app = builder.Build();
 
 

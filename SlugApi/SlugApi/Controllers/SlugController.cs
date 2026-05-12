@@ -1,10 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Asp.Versioning;
+using Microsoft.AspNetCore.Mvc;
 using SlugApi.DTOs;
 namespace SlugApi.Controllers
 {
-
     [ApiController]
-    [Route("api/v1/[controller]")]
+    [ApiVersion("1.0")]
+    [Route("api/v{version:apiVersion}/slug")]
     public class SlugController : ControllerBase
     {
         [HttpPost]
