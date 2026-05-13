@@ -23,8 +23,8 @@ namespace SlugApi.Exceptions
                 {
                     Type = exception.GetType().Name,
                     Title = "Error has occurred.",
-                    Status = httpContext.Response.StatusCode >= 500 ? "An unexpected error occurred." : exception.Massage
-                    Detail = "
+                    Status = httpContext.Response.StatusCode,
+                    Detail = httpContext.Response.StatusCode >= 500 ? "An unexpected error occurred." : exception.Massage
                 }
             
             });
