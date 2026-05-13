@@ -11,6 +11,8 @@ namespace SlugApi.Exceptions
             httpContext.Response.StatusCode = exception switch
             {
                 ValidationException => StatusCodes.Status400BadRequest,
+                ArgumentNullException => StatusCodes.Status400BadRequest,
+                ArgumentException => StatusCodes.Status400BadRequest,
                 _ => StatusCodes.Status500InternalServerError
             };
             return await problemDetailsService.TryWriteAsync(new ProblemDetailsContext
@@ -21,7 +23,8 @@ namespace SlugApi.Exceptions
                 {
                     Type = exception.GetType().Name,
                     Title = "Error has occurred.",
-                    Detail = exception.Message
+                    Status = httpContext.Response.StatusCode >= 500 ? "An unexpected error occurred." : exception.Massage
+                    Detail = "
                 }
             
             });
