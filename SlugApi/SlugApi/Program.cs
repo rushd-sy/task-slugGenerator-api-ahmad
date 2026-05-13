@@ -1,7 +1,6 @@
 
 using Asp.Versioning;
 using Microsoft.AspNetCore.Diagnostics;
-using Microsoft.AspNetCore.Mvc;
 using SlugApi.Exceptions;
 
 namespace SlugApi
