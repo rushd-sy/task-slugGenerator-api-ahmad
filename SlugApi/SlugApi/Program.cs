@@ -1,5 +1,7 @@
 
 using Asp.Versioning;
+using Microsoft.AspNetCore.Diagnostics;
+using SlugApi.Exceptions;
 
 namespace SlugApi
 {
@@ -13,6 +15,8 @@ namespace SlugApi
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
             builder.Services.AddOpenApi();
+            builder.Services.AddProblemDetails();
+            builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
             builder.Services.AddApiVersioning(options =>
             {
                 options.DefaultApiVersion = new ApiVersion(1, 0);
@@ -20,7 +24,8 @@ namespace SlugApi
             });
             var app = builder.Build();
 
-
+            app.UseExceptionHandler();
+      
             if (app.Environment.IsDevelopment())
             {
                 app.UseSwagger();
@@ -30,7 +35,6 @@ namespace SlugApi
             app.UseHttpsRedirection();
 
             app.UseAuthorization();
-
 
             app.MapControllers();
 
