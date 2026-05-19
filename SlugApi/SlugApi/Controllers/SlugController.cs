@@ -11,7 +11,6 @@ namespace SlugApi.Controllers
         [HttpPost]
         public ActionResult<GenerateSlugResponse> GenerateSlug([FromBody] GenerateSlugRequest request)
         {
-            ArgumentException.ThrowIfNullOrWhiteSpace(request.Text);
             var slug = SlugGenerator.SlugGenerator.Generate(request.Text, request.Separator ?? '-');
             var response = new GenerateSlugResponse
             {

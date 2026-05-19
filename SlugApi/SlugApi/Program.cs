@@ -1,7 +1,10 @@
 
 using Asp.Versioning;
+using FluentValidation;
+using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Diagnostics;
 using SlugApi.Exceptions;
+using SlugApi.Validators;
 
 namespace SlugApi
 {
@@ -22,6 +25,8 @@ namespace SlugApi
                 options.DefaultApiVersion = new ApiVersion(1, 0);
                 options.AssumeDefaultVersionWhenUnspecified = true;
             });
+            builder.Services.AddFluentValidationAutoValidation();
+            builder.Services.AddValidatorsFromAssemblyContaining<GenerateSlugRequestValidator>();
             var app = builder.Build();
 
             app.UseExceptionHandler();
