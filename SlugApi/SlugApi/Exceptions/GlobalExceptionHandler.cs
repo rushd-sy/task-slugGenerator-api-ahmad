@@ -4,8 +4,9 @@ using System.ComponentModel.DataAnnotations;
 
 namespace SlugApi.Exceptions
 {
-    public class GlobalExceptionHandler(IProblemDetailsService problemDetailsService) : IExceptionHandler
+    public class GlobalExceptionHandler(IProblemDetailsService problemDetailsService, ILogger<GlobalExceptionHandler> _logger) : IExceptionHandler
     {
+
         public async ValueTask<bool> TryHandleAsync(HttpContext httpContext, Exception exception, CancellationToken cancellationToken)
         {
             httpContext.Response.StatusCode = exception switch
@@ -15,6 +16,8 @@ namespace SlugApi.Exceptions
                 ArgumentException => StatusCodes.Status400BadRequest,
                 _ => StatusCodes.Status500InternalServerError
             };
+            _logger.LogError(exception, "An error occurred while processing the request.");
+
             return await problemDetailsService.TryWriteAsync(new ProblemDetailsContext
             {
                 HttpContext = httpContext,
@@ -24,9 +27,9 @@ namespace SlugApi.Exceptions
                     Type = exception.GetType().Name,
                     Title = "Error has occurred.",
                     Status = httpContext.Response.StatusCode,
-                    Detail = httpContext.Response.StatusCode >= 500 ? "An unexpected error occurred." : exception.Massage
+                    Detail = httpContext.Response.StatusCode >= 500 ? "An unexpected error occurred." : exception.Message
                 }
-            
+
             });
             
         }
