@@ -4,6 +4,6 @@ Content-Type: application/json
 
 {
   "Text" : "Hello World!",
-  "Separator" : "8"
-  
+  "Separator" : "-"
+   
 }

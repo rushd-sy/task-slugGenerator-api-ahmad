@@ -1,3 +1,4 @@
 <Solution>
+  <Project Path="SlugApi.Test/SlugApi.Test.csproj" Id="afe40526-3c06-44a4-9820-c538cb111866" />
   <Project Path="SlugApi/SlugApi.csproj" />
 </Solution>
